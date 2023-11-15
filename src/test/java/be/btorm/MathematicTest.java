@@ -3,6 +3,8 @@ package be.btorm;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,6 +35,13 @@ class MathematicTest {
 
         //Assert
         assertEquals(expected, actual);
+//        assertNotEquals();
+//        assertNull();
+//        assertNotNull();
+//        assertTrue();
+//        assertFalse();
+//        assertThrows()
+//        assertDoesNotThrow();
     }
 
     @Test
@@ -50,6 +59,17 @@ class MathematicTest {
         assertEquals(expected, actual);
     }
 
+    @ParameterizedTest
+    @CsvSource({"5,2,7","3,5,8"})
+    void positivePlusPositiveShouldEqualsSmth(int a,int b,int expected){
+
+        // Action
+        int actual = math.add(a, b);
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
     @Test
     void maxValuePlusPositiveShouldThrowRuntimeException() {
 
@@ -59,5 +79,16 @@ class MathematicTest {
 
         //Action and Assert
         assertThrows(RuntimeException.class,() -> math.add(a,b));
+    }
+
+    @Test
+    void tenDividedbyTwoShouldEqualsFive(){
+        assertEquals(5,math.division(10,2));
+    }
+
+    @Test
+    void dividedByZeroShouldThrowDividedByZeroException(){
+        DividedByZeroException actualException = assertThrows(DividedByZeroException.class,()-> math.division(10,0));
+        assertEquals("Cannot divide by zero",actualException.getMessage());
     }
 }

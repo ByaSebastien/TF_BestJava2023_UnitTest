@@ -9,4 +9,12 @@ public class Mathematic {
         }
         return a + b;
     }
+
+    public int division(int a, int b){
+
+        if(b==0){
+            throw new DividedByZeroException();
+        }
+        return a/b;
+    }
 }
