@@ -32,10 +32,6 @@ public class TaskManager {
         return true;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
     public List<Task> getPendingTasks(){
 
         return tasks.stream()
